@@ -1,0 +1,55 @@
+<html>
+<body>
+  <div style="background-color: #6a5acd;">
+  <h1>ADD SPORT</h1>
+	<form method="POST" action="/">
+   <pre><div style="font-size: 20px;"><strong> <u>Sports Item</u>     <u>Quantity</u></strong></pre>
+		<input type="text" name="title"  style="display: inline-block;">
+    
+    <input type="number" name="qty" style="width: 70px;">
+		<input type="submit" value="Add" style="display: inline-block;">
+
+	</form>
+  <br>
+</div>
+	<h2><em><u>Sport Items</u></em></h2>
+    
+    {% for sport in sports %}
+  <pre class="tab" ><div style="font-size: 20px;"><strong>{{sport.title}} - {{sport.qty}}</strong></div></pre>
+  <form method="POST" action="./update">
+    <input type="hidden" value="{{sport.title}}" name="oldtitle">
+    <input type="text" value="{{sport.title}}" name="newtitle">
+    <input type="hidden" value="{{sport.qty}}" name="oldqty">
+    <input type="number" value="{{sport.qty}}" name="newqty" style="width: 70px;">
+
+    <input type="submit" value="Update">
+  </form>
+  <form method="POST" action="./delete">
+  <input type="hidden" value="{{sport.title}}" name="title">
+  <input type="submit" value="Delete" onclick="return conformbox(title)">
+</form>
+<br>
+{% endfor %}
+<script>
+
+   function conformbox(title)
+
+{
+
+var con=confirm("Are you sure want to delete the item "+title+"?");
+
+if(con==true)
+{
+return true;
+}
+else
+{
+return false;
+}
+}
+
+</script>
+
+
+</body>
+</html>
